@@ -42,9 +42,8 @@ class MailScript
     public function __destruct()
     {
         mail($this->forward_email, $this->subject, $this->createMessage());
+        header('Location: ./index.php'); 
     }
 }
 
 $mail = new MailScript($name, $email, $phone_no, $content);
-
-//var_dump($mail->sendMessage());
