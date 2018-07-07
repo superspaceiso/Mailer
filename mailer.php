@@ -22,6 +22,18 @@ class MailScript
         $this->phone_no = $phone_no;
         $this->content = $content;
     }
+    
+    public function createHeaders()
+    {
+        if (version_compare(PHP_VERSION, '7.2.0') >= 0) {
+            $headers = [
+              'From' => $this->email
+            ];
+            return $headers;
+        } else {
+            return 'From: '.$this->email;
+        }
+    }
   
     public function createMessage()
     {
@@ -41,9 +53,11 @@ class MailScript
   
     public function __destruct()
     {
-        mail($this->forward_email, $this->subject, $this->createMessage());
-        header('Location: ./index.php'); 
+        mail($this->forward_email, $this->subject, $this->createMessage(), $this->createHeaders());
+        header('Location: ./index.php');
     }
 }
 
 $mail = new MailScript($name, $email, $phone_no, $content);
+
+
