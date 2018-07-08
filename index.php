@@ -13,7 +13,7 @@
   </div>
   <div class="form-group">
     <label>Message:</label>
-    <textarea class="form-control" rows="8" name="enquiry" required></textarea>
+    <textarea class="form-control" rows="8" name="message" required></textarea>
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>

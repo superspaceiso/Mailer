@@ -3,24 +3,24 @@
 $name = $_POST['name'];
 $email = $_POST['email'];
 $phone_no = $_POST['phone'];
-$content = $_POST['enquiry'];
+$message_content = $_POST['message'];
 
 class MailScript
 {
     private $name;
     private $email;
     private $phone_no;
-    private $content;
+    private $message_content;
   
-    private $forward_email = 'lancswolf@gmail.com';
+    private $forward_email = '';
     private $subject = 'Website Message';
   
-    public function __construct($name, $email, $phone_no, $content)
+    public function __construct($name, $email, $phone_no, $message_content)
     {
         $this->name = $name;
         $this->email = $email;
         $this->phone_no = $phone_no;
-        $this->content = $content;
+        $this->message_content = $message_content;
     }
     
     public function createHeaders()
@@ -37,7 +37,7 @@ class MailScript
   
     public function createMessage()
     {
-        $message = "
+        $email_message = "
         You have recieved a new message from your website.
 
         Name: $this->name
@@ -45,10 +45,10 @@ class MailScript
         Phone: $this->phone_no
 
         Message:
-        $this->content
+        $this->message_content
         
         ";
-        return $message;
+        return $email_message;
     }
   
     public function __destruct()
@@ -58,6 +58,6 @@ class MailScript
     }
 }
 
-$mail = new MailScript($name, $email, $phone_no, $content);
+$mail = new MailScript($name, $email, $phone_no, $message_content);
 
 
